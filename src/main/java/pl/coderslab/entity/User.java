@@ -1,6 +1,8 @@
 package pl.coderslab.entity;
 
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,14 +15,17 @@ public class User {
     private Long id;
     @Column(unique = true)
     private String login;
-
+    @NotBlank
     private String name;
-
+    @NotBlank
     private String surname;
-
+    @NotBlank
     private String password;
-    @ManyToMany
+    @ManyToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Project> projects;
+
+    @OneToMany
+    private List<Task> tasks;
 
     public User(){
 
@@ -72,6 +77,14 @@ public class User {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
 

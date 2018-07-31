@@ -3,6 +3,7 @@ package pl.coderslab.entity;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
+import javax.xml.soap.Text;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,25 +16,52 @@ public class Project {
     private Long id;
 
     private String name;
-    private LocalDateTime localDateTime; //data	utworzenia	-	nadawa	automatycznie
 
+    private LocalDateTime created; //data	utworzenia	-	nadawa	automatycznie
+    @Column(columnDefinition = "TEXT")
     private String description;
     @URL
     private String url; //strona	www	-	walidacja	poprawności
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<User> users; //użytkownicy	-	może	być	wiele,	połączenie	z	encją	użytkowników
-    @ManyToMany
+    @OneToMany(mappedBy = "project")
     private List<Task> tasks;
 
-    private String identifier;  //identyfikator-	pole	nadawane	automatycznie	tworzone	przez	usunięcie	wszystkich	znaków
+    private String identifier;  //identyfikator-	pole	nadawane	automatycznie	tworzone	przez
+    // usunięcie	wszystkich	znaków
 //diakrytycznych,	np.	(ółą)	z	pola	nazwa	oraz	zastąpienie	wszystkich	białych	znaków	znakiem
 //myślnika.
 
-    private boolean activity; //aktywność	pole	boolean	-	dla	projektów	nie	aktywnych	nie	wyświetlamy	informacji	na	liście
+    private boolean active; //aktywność	pole	boolean	-	dla	projektów	nie	aktywnych	nie	wyświetlamy
+    // informacji	na	liście
 //aktywności.
 
     public Project(){
 
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public Long getId() {
@@ -76,12 +104,12 @@ public class Project {
         this.users = users;
     }
 
-    public boolean isActivity() {
-        return activity;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setActivity(boolean activity) {
-        this.activity = activity;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
 

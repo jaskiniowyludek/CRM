@@ -12,20 +12,21 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime created;
 
     private String subject;
-    @ManyToMany
-    private List<Project> projects;  //projekt	-	połączenie	z	encją	projektów
-
+    @ManyToOne
+    private Project project;  //projekt	-	połączenie	z	encją	projektów
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToOne
+    @ManyToOne
     private Status status;  //status	-	połączenie	z	encją	statusów
-    @OneToOne
+
+    @ManyToOne
     private Priority priority;  //priorytet	-	połączenie	z	encją	priorytetów
-    @ManyToMany
-    private List<User> users; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją	użytkowników	-	wybieramy	tylko
+    @ManyToOne
+    private User users; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją	użytkowników	-	wybieramy	tylko
 //użytkowników	przydzielonych	do	projektu,	którego	dotyczy	zadanie.
 
     public Task() {
@@ -40,28 +41,12 @@ public class Task {
         this.id = id;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
-    }
-
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
-    }
-
     public String getSubject() {
         return subject;
     }
 
     public void setSubject(String subject) {
         this.subject = subject;
-    }
-
-    public List<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
     }
 
     public String getDescription() {
@@ -88,11 +73,27 @@ public class Task {
         this.priority = priority;
     }
 
-    public List<User> getUsers() {
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public User getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(User users) {
         this.users = users;
     }
 }

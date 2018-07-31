@@ -1,6 +1,7 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "priority")
@@ -12,8 +13,10 @@ public class Priority {
 
     private String name;
 
-    private boolean activity; //aktywność	-	priorytetów	które	nie	są
+    private boolean active; //aktywność	-	priorytetów	które	nie	są
 //aktywne	nie	możemy	przypisać	do	zadania
+    @OneToMany(mappedBy = "priority")
+    private List<Task> tasks;
 
     public Priority(){
 
@@ -35,13 +38,22 @@ public class Priority {
         this.name = name;
     }
 
-    public boolean isActivity() {
-        return activity;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setActivity(boolean activity) {
-        this.activity = activity;
+    public void setActive(boolean active) {
+        this.active = active;
     }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
 }
 //Priorytet ma zawierać nastepujące dane:
 //nazwa

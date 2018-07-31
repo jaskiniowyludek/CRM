@@ -1,6 +1,7 @@
 package pl.coderslab.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "status")
@@ -13,12 +14,14 @@ public class Status {
 
     private String name;
 
-    private boolean activity;  //aktywność	-	statusów	które	nie	są	aktywne
+    private boolean active;  //aktywność	-	statusów	które	nie	są	aktywne
 //nie	możemy	przypisać	do	zadania
 
-    private int sorted;  //kolejność	sortowania	-	pole	numeryczne	po
+    private int sortOrder;  //kolejność	sortowania	-	pole	numeryczne	po
 //którym	posortujemy	statusy,	możliwe	do
 //określenia	przez	administratora.  IDV do dat??
+    @OneToMany(mappedBy = "status")
+    private List<Task> tasks;
 
     public Status() {
     }
@@ -39,21 +42,30 @@ public class Status {
         this.name = name;
     }
 
-    public boolean isActivity() {
-        return activity;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setActivity(boolean activity) {
-        this.activity = activity;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public int getSorted() {
-        return sorted;
+    public int getSortOrder() {
+        return sortOrder;
     }
 
-    public void setSorted(int sorted) {
-        this.sorted = sorted;
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
     }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
 }
 
 //Status
