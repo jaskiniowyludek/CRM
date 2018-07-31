@@ -15,17 +15,86 @@ public class Task {
     private LocalDateTime localDateTime;
 
     private String subject;
-
-    private String project;
+    @ManyToMany
+    private List<Project> projects;  //projekt	-	połączenie	z	encją	projektów
 
     private String description;
 
-    private String status;
+    @OneToOne
+    private Status status;  //status	-	połączenie	z	encją	statusów
+    @OneToOne
+    private Priority priority;  //priorytet	-	połączenie	z	encją	priorytetów
+    @ManyToMany
+    private List<User> users; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją	użytkowników	-	wybieramy	tylko
+//użytkowników	przydzielonych	do	projektu,	którego	dotyczy	zadanie.
 
-    private String priority;
+    public Task() {
 
-    private List<User> users;
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }
 
 
