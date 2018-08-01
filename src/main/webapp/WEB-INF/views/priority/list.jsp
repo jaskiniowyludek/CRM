@@ -16,12 +16,13 @@
 <ul>
     <c:forEach items="${priorities}" var="priority">
         <li>
-                ${priority.name} ${priority.active}
+                ${priority.name}
             <a href="/priority/edit/${priority.id}">Edit priority</a>
             <a href="/priority/deleteConfirm/${priority.id}">Delete priority</a>
         </li>
     </c:forEach>
 
 </ul>
+<p><a href="${pageContext.request.contextPath}/admin/">Return</a></p>
 </body>
 </html>

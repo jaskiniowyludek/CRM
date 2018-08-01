@@ -2,23 +2,22 @@
   Created by IntelliJ IDEA.
   User: ewelina
   Date: 31/07/18
-  Time: 18:28
+  Time: 18:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>All tasks</title>
 </head>
 <body>
-<p><a href="${pageContext.request.contextPath}/article/form">Add article</a></p>
 <ul>
-    <c:forEach items="${articles}" var="article">
+    <c:forEach items="${tasks}" var="task">
         <li>
-                ${article.title} ${article.content}
-            <a href="/article/edit/${article.id}">Edit article</a>
-            <a href="/article/delete/${article.id}">Delete article </a>
+                ${task.subject} ${task.created} ${task.user}
+            <a href="/task/details/${task.id}">Task's details</a>
+            <a href="/task/edit/${task.id}">Edit task</a>
         </li>
     </c:forEach>
 

@@ -16,12 +16,14 @@
 <ul>
     <c:forEach items="${statuses}" var="status">
         <li>
-                ${status.name} ${status.active} ${status.sortOrder}
+                ${status.name}
             <a href="/status/edit/${status.id}">Edit status</a>
             <a href="/status/deleteConfirm/${status.id}">Delete status </a>
         </li>
     </c:forEach>
 
 </ul>
+<p><a href="${pageContext.request.contextPath}/admin/">Return</a></p>
+
 </body>
 </html>

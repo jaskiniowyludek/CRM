@@ -37,13 +37,13 @@ public class ProjectController {
         return "project/list";
     }
 
-    @GetMapping("/form")
+    @GetMapping("/add")
     public String addProject(Model model){
         model.addAttribute("project", new Project());
         return "project/form";
     }
 
-    @PostMapping("/form")
+    @PostMapping("/add")
     public String addProject(@Valid Project project, BindingResult result){
         if (result.hasErrors()) {
             return "project/form";
@@ -67,7 +67,7 @@ public class ProjectController {
         return "redirect:/project";
     }
 
-    @GetMapping("/details") //DOKOŃCZYĆ!!!!
+    @GetMapping("/details/{id}")
     public String showDetails(@PathVariable Long id, Model model){
         Project project = projectRepository.findById(id);
         model.addAttribute("project", project);

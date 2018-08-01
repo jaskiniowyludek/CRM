@@ -13,13 +13,14 @@
 <body>
 
 <p><a href="${pageContext.request.contextPath}/project/">See all projects</a></p>
-<p><a href="${pageContext.request.contextPath}/project/form">Add new project</a></p>
+<p><a href="${pageContext.request.contextPath}/project/add">Add new project</a></p>
 <p><a href="${pageContext.request.contextPath}/user/">See all users</a></p>
 <p><a href="${pageContext.request.contextPath}/user/add">Add new user</a></p>
 <p><a href="${pageContext.request.contextPath}/status/">See all statuses</a></p>
 <p><a href="${pageContext.request.contextPath}/status/add">Add new status</a></p>
 <p><a href="${pageContext.request.contextPath}/priority/">See all priorities</a></p>
 <p><a href="${pageContext.request.contextPath}/priority/add">Add new priority</a></p>
+<p><a href="${pageContext.request.contextPath}/homepage/">Go to homepage</a></p>
 
 </body>
 </html>

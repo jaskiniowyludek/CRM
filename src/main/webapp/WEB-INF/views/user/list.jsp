@@ -23,5 +23,6 @@
     </c:forEach>
 
 </ul>
+<p><a href="${pageContext.request.contextPath}/admin/">Return</a></p>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class Task {
     @ManyToOne
     private Priority priority;  //priorytet	-	połączenie	z	encją	priorytetów
     @ManyToOne
-    private User users; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją	użytkowników	-	wybieramy	tylko
+    private User user; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją	użytkowników	-	wybieramy	tylko
 //użytkowników	przydzielonych	do	projektu,	którego	dotyczy	zadanie.
 
     public Task() {
@@ -89,12 +89,12 @@ public class Task {
         this.project = project;
     }
 
-    public User getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

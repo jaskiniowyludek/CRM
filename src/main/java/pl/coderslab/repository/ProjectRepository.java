@@ -6,4 +6,5 @@ import pl.coderslab.entity.Project;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     Project findById(Long id);
+    Project findFirst5ByCreatedDesc();
 }

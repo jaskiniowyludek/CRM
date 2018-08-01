@@ -13,9 +13,15 @@
 </head>
 <body>
 <h3>Lista projektów: </h3>
-<li>
+<ul>
+    <c:forEach items="${projects}" var="project">
+        <li>
+                ${project.name} ${project.identifier} ${project.created}
+            <a href="/project/details/${project.id}">Project's details</a>
+        </li>
+    </c:forEach>
 
-</li>
+</ul>
 
 </body>
 </html>
