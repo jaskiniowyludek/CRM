@@ -14,11 +14,11 @@
 <body>
 <%--<p><a href="${pageContext.request.contextPath}/article/form">Add article</a></p>--%>
 <ul>
-    <c:forEach items="${articles}" var="article">
+    <c:forEach items="${users}" var="user">
         <li>
-                ${article.title} ${article.content}
-            <a href="/article/edit/${article.id}">Edit article</a>
-            <a href="/article/delete/${article.id}">Delete article </a>
+                ${user.name} ${user.surname} ${user.login}
+            <a href="/user/edit/${user.id}">Edit user</a>
+            <a href="/user/delete/${user.id}">Delete user </a>
         </li>
     </c:forEach>
 
