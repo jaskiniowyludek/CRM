@@ -1,25 +1,21 @@
 <%--
   Created by IntelliJ IDEA.
   User: ewelina
-  Date: 31/07/18
-  Time: 18:30
+  Date: 24/07/18
+  Time: 18:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@	taglib	prefix="form"
                  uri="http://www.springframework.org/tags/form"	%>
-
 <html>
 <head>
-    <title>Add status</title>
+    <title>Are you sure you want to delete this priority???</title>
 </head>
 <body>
-<form:form method="post" modelAttribute="status">
-    <form:input path="name" placeholder="Please, type status's name"/>
-    <form:errors path="name"/>
-    <form:checkbox path="active" value="true"/>
-    <input type="submit" value="Save"/>
-</form:form>
 
+Potwierdź usuniecie priorytetu o id ${id}
+<a href="/priority/delete/${id}">POTWIERDŹ </a>
+<a href="/priority"> ANULUJ</a>
 </body>
 </html>

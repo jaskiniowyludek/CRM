@@ -55,7 +55,7 @@ public class UserController {
     public String deleteUser(@PathVariable long id){
         User user = userRepository.findOne(id);
         userRepository.delete(user);
-        return "deleted";
+        return "/user/deleted";
     }
 
 

@@ -65,6 +65,6 @@ public class StatusController {
     public String deleteStatus(@PathVariable long id){
         Status status = statusRepository.findOne(id);
         statusRepository.delete(status);
-        return "deleted";
+        return "/status/deleted";
     }
 }
