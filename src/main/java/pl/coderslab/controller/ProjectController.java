@@ -69,7 +69,8 @@ public class ProjectController {
 
     @GetMapping("/details") //DOKOŃCZYĆ!!!!
     public String showDetails(@PathVariable Long id, Model model){
-
+        Project project = projectRepository.findById(id);
+        model.addAttribute("project", project);
         return "project/details";
     }
 
