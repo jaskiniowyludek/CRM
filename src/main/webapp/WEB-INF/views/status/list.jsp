@@ -12,13 +12,13 @@
     <title>Title</title>
 </head>
 <body>
-<p><a href="${pageContext.request.contextPath}/article/form">Add article</a></p>
+<p><a href="${pageContext.request.contextPath}/status/add">Add status</a></p>
 <ul>
-    <c:forEach items="${articles}" var="article">
+    <c:forEach items="${statuses}" var="status">
         <li>
-                ${article.title} ${article.content}
-            <a href="/article/edit/${article.id}">Edit article</a>
-            <a href="/article/delete/${article.id}">Delete article </a>
+                ${status.name} ${status.active} ${status.sortOrder}
+            <a href="/status/edit/${status.id}">Edit status</a>
+            <a href="/status/deleteConfirm/${status.id}">Delete status </a>
         </li>
     </c:forEach>
 

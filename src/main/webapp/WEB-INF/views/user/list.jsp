@@ -18,7 +18,7 @@
         <li>
                 ${user.name} ${user.surname} ${user.login}
             <a href="/user/edit/${user.id}">Edit user</a>
-            <a href="/user/delete/${user.id}">Delete user </a>
+            <a href="/user/deleteConfirm/${user.id}">Delete user </a>
         </li>
     </c:forEach>
 

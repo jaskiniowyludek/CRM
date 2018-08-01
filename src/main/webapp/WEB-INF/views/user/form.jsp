@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Add user</title>
 </head>
 <body>
 <form:form method="post" modelAttribute="user">
