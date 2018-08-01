@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<p><a href="${pageContext.request.contextPath}/article/form">Add article</a></p>
+<%--<p><a href="${pageContext.request.contextPath}/article/form">Add article</a></p>--%>
 <ul>
     <c:forEach items="${articles}" var="article">
         <li>

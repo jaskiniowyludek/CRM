@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.xml.soap.Text;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity

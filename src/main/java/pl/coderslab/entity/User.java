@@ -21,7 +21,7 @@ public class User {
     private String surname;
     @NotBlank
     private String password;
-    @ManyToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Project> projects;
 
     @OneToMany

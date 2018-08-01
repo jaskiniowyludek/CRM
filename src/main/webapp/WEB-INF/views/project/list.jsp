@@ -19,7 +19,7 @@
                 ${project.created} ${project.name} ${project.identifier}
             <a href="/task/list/${project.id}">Tasks list</a>
             <a href="/project/details/${project.id}">Project's details</a>
-            <a href="project/edit/${project.id}">Edit project</a>
+            <a href="/project/edit/${project.id}">Edit project</a>
         </li>
     </c:forEach>
 
