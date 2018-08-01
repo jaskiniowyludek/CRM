@@ -4,6 +4,7 @@ package pl.coderslab.entity;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -13,19 +14,27 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
+    @Size(min = 3, message = "Too short! Login should be at least 3 characters long!")
     private String login;
+
     @NotBlank
     private String name;
+
     @NotBlank
     private String surname;
+
     @NotBlank
+    @Size(min = 8, message = "Too short! Password should be at least 8 characters long!")
     private String password;
+
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Project> projects;
 
     @OneToMany
     private List<Task> tasks;
+
 
     public User(){
 

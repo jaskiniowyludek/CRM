@@ -5,19 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.repository.ActivityRepository;
 import pl.coderslab.repository.ProjectRepository;
 
 @Controller
-@RequestMapping("/homepage")
 public class HomepageController {
 
     @Autowired
     ProjectRepository projectRepository;
+    @Autowired
+    ActivityRepository activityRepository;
 
-    @GetMapping("")
+    @GetMapping("/")
     public String HomePage(Model model){
 
-       // model.addAttribute("projects", projectRepository.findFirst5ByCreatedDesc());
+       model.addAttribute("projects", projectRepository.findFirst5ByOrderByCreatedDesc());
+        model.addAttribute("activities", activityRepository.findAll());
         return "homepage";
     }
 }

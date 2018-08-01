@@ -19,7 +19,7 @@ public class Status {
 
     private int sortOrder;  //kolejność	sortowania	-	pole	numeryczne	po
 //którym	posortujemy	statusy,	możliwe	do
-//określenia	przez	administratora.  IDV do dat??
+//określenia	przez	administratora.
     @OneToMany(mappedBy = "status")
     private List<Task> tasks;
 

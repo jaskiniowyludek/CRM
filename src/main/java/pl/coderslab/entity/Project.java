@@ -1,10 +1,12 @@
 package pl.coderslab.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.xml.soap.Text;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +18,18 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
-    private LocalDateTime created; //data	utworzenia	-	nadawa	automatycznie
+    private LocalDateTime created;
     @Column(columnDefinition = "TEXT")
     private String description;
     @URL
-    private String url; //strona	www	-	walidacja	poprawności
+    private String url;
+
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<User> users; //użytkownicy	-	może	być	wiele,	połączenie	z	encją	użytkowników
+    private List<User> users;
+
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
 
@@ -46,7 +51,9 @@ public class Project {
     }
 
     public void setCreated(LocalDateTime created) {
-        this.created = created;
+//MOŻNA TAK???
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.created = LocalDateTime.parse(getCreated().format(formatter));
     }
 
     public List<Task> getTasks() {
@@ -62,7 +69,16 @@ public class Project {
     }
 
     public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+        if(this.identifier==null|| this.identifier==""){
+            this.identifier = identifier;
+        }
+
+    }
+
+    	public void setIdentifier() {
+    		String idRegex = "[żźćńółęąśŻŹĆĄŚĘŁÓŃ]";
+    		this.identifier = getName().trim().replaceAll(" ", "-")
+                    .toLowerCase().replaceAll(idRegex, "");
     }
 
     public Long getId() {
