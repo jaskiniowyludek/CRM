@@ -16,17 +16,20 @@ public class Task {
 
     private String subject;
     @ManyToOne
-    private Project project;  //projekt	-	połączenie	z	encją	projektów
+    private Project project;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne
-    private Status status;  //status	-	połączenie	z	encją	statusów
+    private Status status;
 
     @ManyToOne
-    private Priority priority;  //priorytet	-	połączenie	z	encją	priorytetów
+    private Priority priority;
+
     @ManyToOne
-    private User user; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją	użytkowników	-	wybieramy	tylko
+    private User projectUser; //aktualnie	przydzielonego	użytkownika	-	połączenie	z	encją
+    // użytkowników	-	wybieramy	tylko
 //użytkowników	przydzielonych	do	projektu,	którego	dotyczy	zadanie.
 
     public Task() {
@@ -89,13 +92,7 @@ public class Task {
         this.project = project;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
 
 

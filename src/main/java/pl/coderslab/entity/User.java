@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -32,9 +33,14 @@ public class User {
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private List<Project> projects;
 
-    @OneToMany
+    @OneToMany(mappedBy = "projectUser")
     private List<Task> tasks;
 
+    @ManyToOne
+    	private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Activity> activities;
 
     public User(){
 
@@ -77,7 +83,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public List<Project> getProjects() {
