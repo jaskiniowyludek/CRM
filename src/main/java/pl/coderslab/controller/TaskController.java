@@ -10,6 +10,7 @@ import pl.coderslab.repository.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,12 @@ public class TaskController {
 
     @GetMapping("/add")
     public String addTask(Model model){
-        model.addAttribute("task", new Task());
+        Task task = new Task();
+        List<Status> allByActive = statusRepository.findAllByActive(true);
+        List<Priority> allPrioritiesActive = priorityRepository.findAllByActive(true);
+        model.addAttribute("task", task);
+        model.addAttribute("statuses",allByActive);
+        model.addAttribute("priorities", allPrioritiesActive);
         return "task/form";
     }
 
@@ -48,10 +54,12 @@ public class TaskController {
         taskRepository.save(task);
         return "redirect:/task";
     }
+  //  @GetMapping("/") DOPISAĆ WYŚWIETLANIE LISTY TASKÓW DLA PROJEKTU!!!
 
     @GetMapping("/edit/{id}")
     public String editTask(@PathVariable Long id, Model model) {
         Task task = taskRepository.findOne(id);
+
         model.addAttribute("task", task);
         return "task/form";
     }
@@ -65,7 +73,10 @@ public class TaskController {
     @GetMapping("/details/{id}")
     public String showTask(@PathVariable Long id, Model model){
         Task task = taskRepository.findOne(id);
+        LocalDateTime created = task.getCreated();
+        String formatedDate = created.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         model.addAttribute("task", task);
+        model.addAttribute("date", formatedDate);
         return "task/details";
     }
 
@@ -77,11 +88,11 @@ public class TaskController {
     public List<User> modelUser(){
         return userRepository.findAll();
     }
-    @ModelAttribute("priorities")
+    @ModelAttribute("prioritiesModel")
     public List<Priority> modelPriority(){
         return priorityRepository.findAll();
     }
-    @ModelAttribute("statuses")
+    @ModelAttribute("statusesModel")
     public List<Status> modelStatus(){
         return statusRepository.findAll();
     }

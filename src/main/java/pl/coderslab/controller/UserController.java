@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.Project;
+import pl.coderslab.entity.Role;
 import pl.coderslab.entity.User;
+import pl.coderslab.repository.RoleRepository;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.service.UserService;
 
@@ -24,6 +26,8 @@ public class UserController {
     Validator validator;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
     @GetMapping("")
     public String showAall(Model model){
@@ -62,6 +66,10 @@ public class UserController {
     @ModelAttribute("usersmodel")
     public List<User> modelUser(){
         return userRepository.findAll();
+    }
+    @ModelAttribute("roles")
+    public List<Role> modelRole(){
+        return roleRepository.findAll();
     }
 
 }

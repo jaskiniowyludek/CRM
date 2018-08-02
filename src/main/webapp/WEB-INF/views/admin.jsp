@@ -20,7 +20,8 @@
 <p><a href="${pageContext.request.contextPath}/status/add">Add new status</a></p>
 <p><a href="${pageContext.request.contextPath}/priority/">See all priorities</a></p>
 <p><a href="${pageContext.request.contextPath}/priority/add">Add new priority</a></p>
-<p><a href="${pageContext.request.contextPath}/homepage/">Go to homepage</a></p>
+<p><a href="${pageContext.request.contextPath}/">Go to homepage</a></p>
+<a href="/logout">Wyloguj się</a>
 
 </body>
 </html>

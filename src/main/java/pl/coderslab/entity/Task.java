@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -92,6 +93,13 @@ public class Task {
         this.project = project;
     }
 
+    public User getProjectUser() {
+        return projectUser;
+    }
+
+    public void setProjectUser(User projectUser) {
+        this.projectUser = projectUser;
+    }
 
 }
 

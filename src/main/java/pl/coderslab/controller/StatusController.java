@@ -12,6 +12,8 @@ import pl.coderslab.repository.StatusRepository;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 @RequestMapping("status")
@@ -24,7 +26,19 @@ public class StatusController {
 
     @GetMapping("")
     public String showAall(Model model){
-        model.addAttribute("statuses", statusRepository.findAll());
+        List<Status> allStatus = statusRepository.findAll();
+        Comparator<Status> statusComparator = new Comparator<Status>() {
+
+            @Override
+            public int compare(Status o1, Status o2) {
+                return o1.getSortOrder() - o2.getSortOrder();
+            }
+        };
+
+        allStatus.sort(statusComparator);
+        //allStatus.sort((o1, o2) -> o1.getSortOrder() - o2.getSortOrder());
+        allStatus.sort((Status o1, Status o2) -> {return o1.getSortOrder() - o2.getSortOrder();});
+        model.addAttribute("statuses", allStatus);
         return "status/list";
     }
 

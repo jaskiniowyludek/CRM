@@ -24,11 +24,11 @@
                  itemValue="id"
                  itemLabel="name"/>
     <form:errors path="project"/>
-    <form:select path="user.id"
+    <form:select path="projectUser.id"
                  items="${users}"
                  itemValue="id"
                  itemLabel="login"/>
-    <form:errors path="user"/>
+    <form:errors path="projectUser"/>
     <form:select path="status.id"
                  items="${statuses}"
                  itemValue="id"

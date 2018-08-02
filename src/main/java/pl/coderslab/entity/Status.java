@@ -66,6 +66,15 @@ public class Status {
         this.tasks = tasks;
     }
 
+    @Override
+    public String toString() {
+        return "Status{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", sortOrder=" + sortOrder +
+                '}';
+    }
 }
 
 //Status

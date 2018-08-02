@@ -54,6 +54,14 @@ public class Priority {
         this.tasks = tasks;
     }
 
+    @Override
+    public String toString() {
+        return "Priority{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                '}';
+    }
 }
 //Priorytet ma zawierać nastepujące dane:
 //nazwa

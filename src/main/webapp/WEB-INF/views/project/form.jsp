@@ -27,6 +27,9 @@
                  itemLabel="login"
                  multiple="true"/>
     <form:errors path="users"/>
+    Projekt aktywny?
+    <form:radiobutton path="active" value="true"/>
+    <form:errors path="active"/>
     <input type="submit" value="Save"/>
 </form:form>
 

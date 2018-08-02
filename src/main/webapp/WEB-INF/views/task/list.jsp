@@ -12,10 +12,11 @@
     <title>All tasks</title>
 </head>
 <body>
+task
 <ul>
     <c:forEach items="${tasks}" var="task">
         <li>
-                ${task.subject} ${task.created} ${task.user}
+                ${task.subject} ${task.created} ${task.projectUser.name}
             <a href="/task/details/${task.id}">Task's details</a>
             <a href="/task/edit/${task.id}">Edit task</a>
         </li>

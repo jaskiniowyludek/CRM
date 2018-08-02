@@ -33,9 +33,11 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
 
-    private String identifier;  //identyfikator-	pole	nadawane	automatycznie	tworzone	przez
+    private String identifier;  //identyfikator-	pole	nadawane	automatycznie
+    // tworzone	przez
     // usunięcie	wszystkich	znaków
-//diakrytycznych,	np.	(ółą)	z	pola	nazwa	oraz	zastąpienie	wszystkich	białych	znaków	znakiem
+//diakrytycznych,	np.	(ółą)	z	pola	nazwa	oraz	zastąpienie	wszystkich
+// białych	znaków	znakiem
 //myślnika.
 
     private boolean active; //aktywność	pole	boolean	-	dla	projektów	nie	aktywnych	nie	wyświetlamy
@@ -51,9 +53,7 @@ public class Project {
     }
 
     public void setCreated(LocalDateTime created) {
-//MOŻNA TAK???
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.created = LocalDateTime.parse(getCreated().format(formatter));
+        this.created = created;
     }
 
     public List<Task> getTasks() {
@@ -69,16 +69,7 @@ public class Project {
     }
 
     public void setIdentifier(String identifier) {
-        if(this.identifier==null|| this.identifier==""){
-            this.identifier = identifier;
-        }
-
-    }
-
-    	public void setIdentifier() {
-    		String idRegex = "[żźćńółęąśŻŹĆĄŚĘŁÓŃ]";
-    		this.identifier = getName().trim().replaceAll(" ", "-")
-                    .toLowerCase().replaceAll(idRegex, "");
+        this.identifier = identifier;
     }
 
     public Long getId() {
@@ -128,6 +119,7 @@ public class Project {
     public void setActive(boolean active) {
         this.active = active;
     }
+
 }
 
 //Projekt

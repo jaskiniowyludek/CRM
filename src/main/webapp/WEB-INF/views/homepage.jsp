@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Homepage</title>
 </head>
 <body>
 <h3>Lista projektów: </h3>
@@ -22,6 +22,10 @@
     </c:forEach>
 
 </ul>
+<h3>Lista ostatnich aktywności: </h3>
+<a href="/logout">Wyloguj się</a>
+<a href="/admin/">Panel administratora</a>
+
 
 </body>
 </html>

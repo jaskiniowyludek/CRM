@@ -14,9 +14,8 @@
 <body>
 <p><a href="${pageContext.request.contextPath}/status/add">Add status</a></p>
 <ul>
-    <c:forEach items="${statuses}" var="status">
-        <li>
-                ${status.name}
+    <c:forEach items="${statuses}" var="status" >
+        <li>[${status.sortOrder}] ${status.name}
             <a href="/status/edit/${status.id}">Edit status</a>
             <a href="/status/deleteConfirm/${status.id}">Delete status </a>
         </li>

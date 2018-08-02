@@ -18,6 +18,8 @@
     <form:input path="name" placeholder="Please, type status's name"/>
     <form:errors path="name"/>
     <form:checkbox path="active" value="true"/>
+    <form:input path="sortOrder" value="${Integer.MAX_VALUE}"/>
+    <form:errors path="sortOrder"/>
     <input type="submit" value="Save"/>
 </form:form>
 

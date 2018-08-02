@@ -15,7 +15,9 @@ import pl.coderslab.repository.UserRepository;
 
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -49,7 +51,11 @@ public class ProjectController {
             return "project/form";
         }
         project.setCreated(LocalDateTime.now());
-       // project.setIdentifier();
+
+        String idRegex = "[żźćńółęąśŻŹĆĄŚĘŁÓŃ]";
+        String identifier = project.getName().trim().replaceAll(" ", "-")
+                .toLowerCase().replaceAll(idRegex, "");
+        project.setIdentifier(identifier);
         projectRepository.save(project);
         return "redirect:/project";
     }
@@ -70,6 +76,9 @@ public class ProjectController {
     @GetMapping("/details/{id}")
     public String showDetails(@PathVariable Long id, Model model){
         Project project = projectRepository.findById(id);
+        LocalDateTime created = project.getCreated();
+        String formatedDate = created.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        model.addAttribute("projectDate", formatedDate);
         model.addAttribute("project", project);
         return "project/details";
     }

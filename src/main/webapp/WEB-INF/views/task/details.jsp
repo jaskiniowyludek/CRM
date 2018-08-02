@@ -14,10 +14,10 @@
 <body>
 <h3>Szczegóły zadania:</h3>
 <ul>
-    <li>Nazwa: ${task.name}</li>
-    <li>Data utworzenia: ${task.created}</li>
+    <li>Nazwa: ${task.subject}</li>
+    <li>Data utworzenia: ${date}</li>
     <li>Opis: ${task.description}</li>
-    <li>Aktualnie przydzielony użytkownik: ${task.user}</li>
+    <li>Aktualnie przydzielony użytkownik: ${task.projectUser.name}</li>
 </ul>
 
 </body>

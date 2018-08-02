@@ -1,12 +1,19 @@
 package pl.coderslab.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.ActivityRepository;
 import pl.coderslab.repository.ProjectRepository;
+import pl.coderslab.repository.UserRepository;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 public class HomepageController {
@@ -15,14 +22,62 @@ public class HomepageController {
     ProjectRepository projectRepository;
     @Autowired
     ActivityRepository activityRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("/")
+    public String main(){
+        return "main";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model, @RequestParam(value = "requested", required = false) String requestedURL){
+        if (requestedURL != null) {
+            model.addAttribute("requested", requestedURL);
+        }
+        return "user/login";
+    }
+
+    @PostMapping("/login")
+    public String login(HttpServletRequest request, HttpServletResponse response){
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        User userInBase = userRepository.findByLogin(login);
+        if (userInBase!=null) {
+           if (BCrypt.checkpw(password, userInBase.getPassword())) {
+               HttpSession session = request.getSession();
+               session.setAttribute("user", userInBase);
+               String requested = request.getParameter("requested");
+               if (requested != null) {
+                   try {
+                       response.sendRedirect(requested);
+                   } catch (IOException ioe) {
+                       ioe.printStackTrace();
+                   }
+               }
+               return "redirect:/homepage";
+           }
+        }
+        return "redirect:/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "user/logout";
+    }
+
+    @GetMapping("/homepage")
     public String HomePage(Model model){
 
        model.addAttribute("projects", projectRepository.findFirst5ByOrderByCreatedDesc());
+       // model.addAttribute("projects", projectRepository.findAll());
         model.addAttribute("activities", activityRepository.findAll());
         return "homepage";
     }
+
+
 }
 
 

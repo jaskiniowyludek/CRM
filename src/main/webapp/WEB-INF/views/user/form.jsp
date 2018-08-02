@@ -21,8 +21,13 @@
     <form:errors path="surname"/>
     <form:input path="login" placeholder="login"/>
     <form:errors path="login"/>
-    <form:password path="password" placegolder="password"/>
+    <form:password path="password" placeholder="password"/>
     <form:errors path="password"/>
+    <form:select path="role.id"
+                 items="${roles}"
+                 itemValue="id"
+                 itemLabel="role"/>
+    <form:errors path="role"/>
     <input type="submit" value="Save"/>
 </form:form>
 
